@@ -49,7 +49,7 @@ void setup() {
   pinMode(ledPin1, OUTPUT);
   pinMode(ledPin2, OUTPUT);
   pinMode(ledPin3, OUTPUT);
-  pinMode(ledPin4, OUTPUT);                  //Set the pin to output mode
+  pinMode(ledPin4, OUTPUT); //Set the pin to output mode
   ledBrightness = minBrightVal;
 
   Serial.begin(9600);
@@ -59,8 +59,6 @@ void loop() {
 
   ldrValue = analogRead(ldrPin);
   Serial.println(ldrValue);
-  //  if (ldrValue<ldrMin)
-  //    ledBrightness = minBrightVal;
 
 if(millis()-lastTimeYouChanged>=fadeRate) 
 {
@@ -73,9 +71,6 @@ if(millis()-lastTimeYouChanged>=fadeRate)
      { 
      ledBrightness += fadeIncrement;
      }
-   
-    // if(ldrValue<ldrMin)
-    // ledBrightness = minBrightVal;
 
 
      if (ledBrightness <= minBrightVal || ledBrightness >= maxBrightVal) 
@@ -86,26 +81,16 @@ if(millis()-lastTimeYouChanged>=fadeRate)
 }
 
 
-  if (millis() - lastTimeYouMoved1 >= moveRate)  //this very simple statement is the timer,
+  if (millis() - lastTimeYouMoved1 >= moveRate)  
   {       
     if (ldrValue >= ldrMin && ldrValue <= ldrMax)
      { servoAngle1 += moveIncrement;
-    //  ledBrightness += fadeIncrement;
+
      }
-
-    //  if (ldrValue<ldrMin)
-    //  ledBrightness = minBrightVal;
-
-    // if (ldrValue<ldrMin)
-    // servoAngle1 = minAngle;
 
     if (servoAngle1 <= minAngle || servoAngle1 >= maxAngle) {
       moveIncrement = -moveIncrement;
     }
-
-  //  if (ledBrightness <= minBrightVal || ledBrightness >= maxBrightVal) {
-  //   fadeIncrement = -fadeIncrement;
-  //  } 
 
     servo1.write(servoAngle1); 
     servo2.write(servoAngle1); 
